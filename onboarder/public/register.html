@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <title>Onboarder Register</title>
+  </head>
+  <body>
+    <script src="assets/js/api/common.js"></script>
+    <script src="assets/js/api/register.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- Header -->
+    <header id="header">
+      <a href="index.html" class="title">Onboarder.com</a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="register.html" class="active">Register</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div id="wrapper">
+      <section id="main" class="wrapper">
+        <div class="inner">
+          <h1 class="major">Create Account</h1>
+          <div id="result"></div>
+          <form action="javascript:register()">
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <label for="username"
+                      >Username<span style="color: red">*</span></label
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      id="username"
+                      name="username"
+                      value=""
+                      placeholder="Enter user name"
+                    /><br />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label for="password"
+                      >Password<span style="color: red">*</span></label
+                    >
+                  </td>
+                  <td>
+                    <input type='password' id='password' name='password' placeholder="Enter password" value=''><img onclick='passwordToggle()' width='3%' height='3%' style='display: inline; margin-left: -4.5%; vertical-align: middle' src='./images/eye.png' id='togglePassword'>
+                    <br>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label for="email"
+                      >Email ID<span style="color: red">*</span></label
+                    >
+                  </td>
+                  <td>
+                    <input type="text" id="email" name="email" value="" placeholder="Enter email id" /><br />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <input type="submit" value="Submit" class="primary" />
+            <a href="login.html" class="button">Have an Account?</a>
+          </form>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

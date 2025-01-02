@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <title>Onboarder List Courses</title>
+  </head>
+  <body>
+    <script src="assets/js/api/common.js"></script>
+    <script src="assets/js/api/list-courses.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+      window.onload = listCourses;
+    </script>
+
+    <header id="header">
+      <a href="view-users-details.html" class="title">Onboarder.com</a>
+      <nav>
+        <ul>
+          <li><a href="create-course.html">Create Course</a></li>
+          <li><a href="list-users.html">User List</a></li>
+          <li><a href="list-courses.html" class="active">Course List</a></li>
+          <li><a href="./view-course-details.html">My Courses</a></li>
+          <li><a href="view-users-details.html">Profile</a></li>
+          <li><a onclick="logout()" href="./index.html">Log Out</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div id="wrapper">
+      <section id="main" class="wrapper">
+        <div class="inner">
+          <h1 class="major">Course List</h1>
+          <div id="courseDiv"></div>
+          <div id="courseInfoDiv"></div>
+          <div id="result"></div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

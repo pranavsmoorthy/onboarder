@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <title>Onboarder View User</title>
+  </head>
+  <body>
+    <script src="assets/js/api/common.js"></script>
+    <script src="assets/js/api/view-course-details.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+      window.onload = getCourses();
+    </script>
+    <header id="header">
+      <a href="view-users-details.html" class="title">Onboarder.com</a>
+      <nav>
+        <ul id="navOptions">
+        </ul>
+      </nav>
+    </header>
+    <div id="wrapper">
+      <section id="main" class="wrapper">
+        <div class="inner">
+          <h1 class="major">Courses Enrolled</h1>
+          <div id='result'></div>
+          <div id="userEnrollmentInfoDiv">
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
