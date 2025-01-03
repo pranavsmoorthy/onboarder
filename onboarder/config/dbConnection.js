@@ -1,3 +1,4 @@
+//Checking if git works
 const mongoose = require("mongoose");
 
 const connectDb = async () => {
