@@ -3,6 +3,7 @@ const User = require("../models/userModel");
 const Course = require("../models/courseModel");
 const Enrollment = require("../models/enrollmentModel");
 const Utils = require("../utils/utilities");
+const emailValidator = require("deep-email-validator");
 const { constants } = require("../constants");
 const { request } = require("express");
 
@@ -80,7 +81,7 @@ const getUser = async (request, response, userId) => {
 //@access public
 const createUser = asyncHandler(async (request, response) => {
     console.log('user creation request -- start');
-    const validationMessage = validateUserFieldsInRequestBody(request);
+    const validationMessage = await validateUserFieldsInRequestBody(request);
     console.log(request.body);
     if (validationMessage.length != 0) {
         response.status(400).json({
@@ -133,7 +134,7 @@ const updateUserById = async (request, response, userId) => {
             return;
         }
 
-        const validationMessage = validateUserFieldsInRequestBody(request);
+        const validationMessage = await validateUserFieldsInRequestBody(request);
         if (validationMessage.length != 0) {
             response.status(400).json({
                 "code": 'user-update-failed',
@@ -196,18 +197,18 @@ const deleteUserById = asyncHandler(async (request, response, userId) => {
     }
 })
 
-const validateUserFieldsInRequestBody = (request) => {
+const validateUserFieldsInRequestBody = async (request) => {
     let errors = [];
-    var re = /\S+@\S+\.\S+/;
 
     const { username, email, password } = request.body;
+
     if (Utils.isEmptyOrNil(username)) {
         errors.push("Username cannot be empty.");
     }
 
     if (Utils.isEmptyOrNil(email)) {
         errors.push("Email cannot be empty.");
-    } else if (!re.test(email)) {
+    } else if (!(await isEmailValid(email))) {
         errors.push("Invalid email");
     }
 
@@ -219,6 +220,10 @@ const validateUserFieldsInRequestBody = (request) => {
 
     return errors;
 };
+
+async function isEmailValid(email){
+    return (await emailValidator.validate(email)).valid;
+}
 
 module.exports = {
     getUserForAdminRoute,
