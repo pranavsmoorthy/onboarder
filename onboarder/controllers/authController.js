@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const User = require("../models/userModel");
 const asyncHandler = require("express-async-handler");
+const Utils = require("../utils/utilities");
 const cookieParser = require('cookie-parser');
 
 const loginUser = asyncHandler(async (request, response) => {
@@ -31,6 +32,9 @@ const loginUser = asyncHandler(async (request, response) => {
             role: user.role 
         }, "shanthanav");
 
+        let htmlString = "<h1>New sign-on notification</h1><p>Welcome back to Onboarder!</p>"
+        Utils.sendEmail(user.email, "New sign on notification", htmlString);
+        
         response
             .clearCookie("token")
             .cookie('token', token)
