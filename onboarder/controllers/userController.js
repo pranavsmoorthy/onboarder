@@ -98,6 +98,10 @@ const createUser = asyncHandler(async (request, response) => {
             password: request.body.password,
             role: request.body.role
         });
+
+        let htmlString = "<h1>Welcome to Onboarder</h1><p>Welcome to Onboarder! We&apos;re thrilled to have you join our community. We hope you&apos;ll find our services to be a valuable resource. We&apos;re here to help you make the most of your experience.</p><p>To get started, please visit your <a href='http://localhost:5001/index.html'>Onboarder profile page</a>!</p><p><br></p>"
+        Utils.sendEmail(request.body.email, "Welcome to Onboarder!", htmlString);
+
         response.status(201).json(user);
     } catch (err) {
         console.log(err);
@@ -149,6 +153,9 @@ const updateUserById = async (request, response, userId) => {
             { new: true }
         );
 
+        let htmlString = "<h1>Profile Information Updated</h1><p>Your profile information has been updated.<p>For more information, please visit your <a href='http://localhost:5001/index.html'>Onboarder profile page</a>!</p><p><br></p>"
+        Utils.sendEmail(user.email, "Profile Information Updated", htmlString);
+
         response.status(200).json(updatedUser);
     } catch (err) {
         let message = 'Internal Server Error: Unable to update user';
@@ -187,6 +194,11 @@ const deleteUserById = asyncHandler(async (request, response, userId) => {
 
         await Enrollment.deleteMany({ userId: user.id });
         await User.deleteOne(user);
+
+        let htmlString = "<h1>Your Account Has Been Deleted</h1>"
+        Utils.sendEmail(user.email, "We're sad to see you go.", htmlString);
+
+
         response.status(200).json({});
     } catch (err) {
         console.log(err);
