@@ -141,6 +141,11 @@ const unenrollUser = asyncHandler(async (request, response) => {
 
         await Enrollment.deleteOne(result);
 
+        let htmlString = "<h1>Successfully Unenrolled</h1><p>You have been unenrolled from the following course: " + course.title
+         + "</p><p>For more information, please visit your <a href='http://localhost:5001/index.html'>Onboarder courses page</a>!</p><p><br></p>"
+
+        Utils.sendEmail(user.email, "You have been unenrolled from a course", htmlString);
+
         response.status(200).json({
             result
         });
