@@ -50,6 +50,12 @@ const enrollUser = asyncHandler(async (request, response) => {
             progress: request.body.progress
         });
 
+        let htmlString = "<h1>Congratulations!</h1><p>You have been enrolled in the following course: " + course.title 
+        + "</p><p>This course is due at " + request.body.completionDate 
+        + "</p><p>For more information, please visit your <a href='http://localhost:5001/index.html'>Onboarder courses page</a>!</p><p><br></p>";
+
+        Utils.sendEmail(user.email, "You have been enrolled in a course", htmlString);
+
         response.status(200).json(enrollment);
     }catch(err){
         console.log(err);

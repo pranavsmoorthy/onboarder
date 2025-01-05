@@ -34,7 +34,6 @@ const verifyJWTToken = (req, res, next, requiresAdminClearance) => {
         }
 
         req.headers.id = decoded.userId;
-        console.log("Server log: " + req.headers.id);
         next();
     } catch (err) {
         console.log(err);
