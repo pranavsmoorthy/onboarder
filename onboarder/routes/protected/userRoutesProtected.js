@@ -60,6 +60,57 @@ const {
  *              500: 
  *                  description: Internal server error
 */
+/**
+ * @api {get} /api/protected/users Get user
+ * @apiName Get User
+ * @apiPermission protected
+ * @apiGroup Users
+ * @apiDescription Get user details for given id in authentication token
+ *
+ * @apiHeader {String} token Authentication token.
+ *
+ * @apiSuccess {Object} user User object.
+ * @apiError Unauthorized unauthorized
+ * @apiError NotFound could not find user with given id
+ * @apiError InternalServerError internal server error
+ * 
+ * @apiVersion 1.0.0
+ */
+/**
+ * @api {put} /api/protected/users Update user
+ * @apiName Update User
+ * @apiPermission protected
+ * @apiGroup Users
+ * @apiDescription Update user details for given id in authentication token
+ *
+ * @apiHeader {String} token Authentication token.
+ * @apiBody {String} username Updated (or existing) username
+ * @apiBody {String} password Updated (or existing) password
+ * @apiBody {String} email Updated (or existing) email
+ *
+ * @apiSuccess {Object} user User object.
+ * @apiError Unauthorized unauthorized
+ * @apiError NotFound could not find user with given id
+ * @apiError InternalServerError internal server error
+ * 
+ * @apiVersion 1.0.0
+ */
+/**
+ * @api {delete} /api/protected/users Delete user
+ * @apiName Delete User
+ * @apiPermission protected
+ * @apiGroup Users
+ * @apiDescription Delete user with given id in authentication token
+ *
+ * @apiHeader {String} token Authentication token.
+ *
+ * @apiSuccess {Object} user Deleted user object.
+ * @apiError Unauthorized unauthorized
+ * @apiError NotFound could not find user with given id
+ * @apiError InternalServerError internal server error
+ * 
+ * @apiVersion 1.0.0
+ */
 router.route('/')
     .get(getUserForProtectedRoute)
     .put(updateUserForProtectedRoute)

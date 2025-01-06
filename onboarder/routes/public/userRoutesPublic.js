@@ -33,7 +33,7 @@ const {
  *                  description: Internal server error
 */
 /**
- * @api {post} /api/public/users create user
+ * @api {post} /api/public/users Create user
  * @apiName Create User
  * @apiPermission public
  * @apiGroup Users

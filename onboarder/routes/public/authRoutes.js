@@ -48,7 +48,7 @@ const {
  *                 description: Unable to logout
 */
 /**
- * @api {post} /api/public/auth authenticate user
+ * @api {post} /api/public/auth Authenticate user
  * @apiName Authenticate User
  * @apiPermission public
  * @apiGroup Security
@@ -64,7 +64,7 @@ const {
  * @apiVersion 1.0.0
  */
 /**
- * @api {get} /api/public/auth logout user
+ * @api {get} /api/public/auth Logout user
  * @apiName Logout User
  * @apiPermission public
  * @apiGroup Security
