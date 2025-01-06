@@ -14,7 +14,7 @@ const listCourses = asyncHandler(async (request, response) => {
     }catch(err){
         response.status(constants.SERVER_ERROR).json({
             "code": 'course-list-failed',
-            "messages": ["Unable to get list of all course"]
+            "messages": ["Unable to get list of all courses"]
         });
     }
 });

@@ -8,6 +8,7 @@ const loginUser = asyncHandler(async (request, response) => {
     try{
         const { email, password } = request.body;
 
+        console.log(JSON.stringify(request.body));
         const user = await User.findOne({
             $or: [{ email: email }, { username: email }],
             "password": password
@@ -35,6 +36,7 @@ const loginUser = asyncHandler(async (request, response) => {
         let htmlString = "<h1>New sign-on notification</h1><p>Welcome back to Onboarder!</p>"
         Utils.sendEmail(user.email, "New sign on notification", htmlString);
         
+        console.log("logged in: " + request.body.email);
         response
             .clearCookie("token")
             .cookie('token', token)

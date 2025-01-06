@@ -82,7 +82,6 @@ const getUser = async (request, response, userId) => {
 const createUser = asyncHandler(async (request, response) => {
     console.log('user creation request -- start');
     const validationMessage = await validateUserFieldsInRequestBody(request);
-    console.log(request.body);
     if (validationMessage.length != 0) {
         response.status(400).json({
             "code": 'user-create-failed',
@@ -92,11 +91,17 @@ const createUser = asyncHandler(async (request, response) => {
     }
 
     try {
+        let role = request.body.role;
+
+        if(Utils.isEmptyOrNil(role)){
+            role = "User";
+        }
+
         const user = await User.create({
-            username: request.body.username,
-            email: request.body.email,
-            password: request.body.password,
-            role: request.body.role
+            "username": request.body.username,
+            "email": request.body.email,
+            "password": request.body.password,
+            "role": role
         });
 
         let htmlString = "<h1>Welcome to Onboarder</h1><p>Welcome to Onboarder! We&apos;re thrilled to have you join our community. We hope you&apos;ll find our services to be a valuable resource. We&apos;re here to help you make the most of your experience.</p><p>To get started, please visit your <a href='http://localhost:5001/index.html'>Onboarder profile page</a>!</p><p><br></p>"
@@ -147,9 +152,22 @@ const updateUserById = async (request, response, userId) => {
             return;
         }
 
+        let role = request.body.role;
+
+        if(Utils.isEmptyOrNil(role)){
+            role = user.role;
+        }
+
+        const data = {
+            "username": request.body.username,
+            "password": request.body.password,
+            "email": request.body.email,
+            "role": role
+        }
+
         const updatedUser = await User.findByIdAndUpdate(
             userId,
-            request.body,
+            data,
             { new: true }
         );
 
