@@ -21,7 +21,7 @@ const {
  *                              userId:
  *                                  type: string
  *                                  required: true
- *                              courseID:
+ *                              courseId:
  *                                  type: string
  *                                  required: true
  *         responses:
@@ -30,9 +30,9 @@ const {
  *             401:
  *                 description: Unauthorized
  *             404:
- *                 description: User with given ID could not be found
+ *                 description: Enrollment with given userId and courseId could not be found
  *             500:
- *                 description: Unable to delete user
+ *                 description: Unable to unenroll
  *      post:
  *         summary: Create course enrollment for the user
  *         description: Create course enrollment for the user
@@ -58,10 +58,49 @@ const {
  *             401:
  *                 description: Unauthorized
  *             404:
- *                 description: User with given ID could not be found
+ *                 description: User or course with given userId and courseId could not be found
  *             500:
- *                 description: Unable to update user
+ *                 description: Unable to Enroll
 */
+/**
+ * @api {post} /api/admin/enroll Enroll user
+ * @apiName Enroll User
+ * @apiPermission public
+ * @apiGroup Enrollment
+ * @apiDescription Enroll user into course
+ *
+ * @apiHeader {String} token Authentication token.
+ * 
+ * @apiBody {String} userId ID of the user.
+ * @apiBody {String} courseId ID of the course.
+ * @apiBody {Date} completionDate Date of course completion.
+ *
+ * @apiSuccess {Object} enrollment Enrollment object.
+ * @apiError Unauthorized unauthorized
+ * @apiError NotFound User or course with given userId and courseId could not be found
+ * @apiError InternalServerError internal server error
+ * 
+ * @apiVersion 1.0.0
+ */
+/**
+ * @api {delete} /api/admin/enroll Unenroll user
+ * @apiName Unenroll User
+ * @apiPermission public
+ * @apiGroup Enrollment
+ * @apiDescription Unenroll user from the course
+ *
+ * @apiHeader {String} token Authentication token.
+ * 
+ * @apiBody {String} userId ID of the user.
+ * @apiBody {String} courseId ID of the course.
+ *
+ * @apiSuccess {Object} enrollment Enrollment object.
+ * @apiError Unauthorized unauthorized
+ * @apiError NotFound User or course with given userId and courseId could not be found
+ * @apiError InternalServerError internal server error
+ * 
+ * @apiVersion 1.0.0
+ */
 router.route('/')
     .post(enrollUser)
     .delete(unenrollUser);

@@ -192,7 +192,7 @@
                                         "type": "string",
                                         "required": true
                                     },
-                                    "courseID": {
+                                    "courseId": {
                                         "type": "string",
                                         "required": true
                                     }
@@ -209,10 +209,10 @@
                         "description": "Unauthorized"
                     },
                     "404": {
-                        "description": "User with given ID could not be found"
+                        "description": "Enrollment with given userId and courseId could not be found"
                     },
                     "500": {
-                        "description": "Unable to delete user"
+                        "description": "Unable to unenroll"
                     }
                 }
             },
@@ -251,10 +251,10 @@
                         "description": "Unauthorized"
                     },
                     "404": {
-                        "description": "User with given ID could not be found"
+                        "description": "User or course with given userId and courseId could not be found"
                     },
                     "500": {
-                        "description": "Unable to update user"
+                        "description": "Unable to enroll"
                     }
                 }
             }
