@@ -46,10 +46,6 @@
                                     "description": {
                                         "type": "string",
                                         "required": false
-                                    },
-                                    "completionDate": {
-                                        "type": "string",
-                                        "required": true
                                     }
                                 }
                             }
