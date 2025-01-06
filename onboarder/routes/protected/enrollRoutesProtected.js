@@ -48,7 +48,7 @@ const {
  * @apiHeader {String} token Authentication token.
  * @apiBody {String} userId ID of user.
  * @apiBody {String} courseId ID of course that user is taking.
- * @apiBody {String} progress Updated progress pf enrollment
+ * @apiBody {String} progress Updated progress pf enrollment. Possible values are: "In Progress" and "Completed"
  *
  * @apiSuccess {Object} enrollment Updated enrollment object.
  * @apiError Unauthorized unauthorized
