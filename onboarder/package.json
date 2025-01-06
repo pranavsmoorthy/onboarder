@@ -1,5 +1,5 @@
 {
-  "name": "contacts",
+  "name": "onboarder-application",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -8,7 +8,11 @@
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
-  "author": "",
+  "apidoc": {
+    "title": "Onboarder.com",
+    "url": "https://api.github.com/v1"
+  },
+  "author": "Pranav S Moorthy",
   "license": "ISC",
   "description": "",
   "dependencies": {

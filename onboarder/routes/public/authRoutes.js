@@ -4,8 +4,7 @@ const router = express.Router();
 
 const {
     loginUser,
-    logoutUser,
-    verifyJWTToken
+    logoutUser
 } = require("../../controllers/authController");
 
 /** 
@@ -48,11 +47,36 @@ const {
  *             500:
  *                 description: Unable to logout
 */
+/**
+ * @api {post} /api/public/auth authenticate user
+ * @apiName Authenticate User
+ * @apiPermission public
+ * @apiGroup Security
+ * @apiDescription Log in user using user's username/email and password
+ *
+ * @apiBody {String} email User name or email id.
+ * @apiBody {String} password Password.
+ *
+ * @apiSuccess {String} token Authentication token.
+ * @apiError InvalidCredentials no account matches username/email and password given
+ * @apiError InternalServerError internal server error
+ * 
+ * @apiVersion 1.0.0
+ */
+/**
+ * @api {get} /api/public/auth logout user
+ * @apiName Logout User
+ * @apiPermission public
+ * @apiGroup Security
+ * @apiDescription Log out user
+ *
+ * @apiSuccess {Object} object Empty object.
+ * @apiError InternalServerError internal server error
+ * 
+ * @apiVersion 1.0.0
+ */
 router.route('/')
     .post(loginUser)
     .get(logoutUser);
-
-router.route('/authenticate')
-    .get(verifyJWTToken);
 
 module.exports = router;
