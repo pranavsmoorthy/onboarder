@@ -10,7 +10,7 @@
   },
   "apidoc": {
     "title": "Onboarder.com",
-    "url": "https://api.github.com/v1"
+    "url": "http://onboarder.com:5001"
   },
   "author": "Pranav S Moorthy",
   "license": "ISC",

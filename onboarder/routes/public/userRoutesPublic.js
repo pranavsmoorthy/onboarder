@@ -32,6 +32,22 @@ const {
  *              500: 
  *                  description: Internal server error
 */
+/**
+ * @api {post} /api/public/users create user
+ * @apiName Create User
+ * @apiPermission public
+ * @apiGroup Users
+ * @apiDescription Create a new user with given details
+ *
+ * @apiBody {String} username Username.
+ * @apiBody {String} email User's email id.
+ * @apiBody {String} password Password.
+ *
+ * @apiSuccess {Object} user The created user object.
+ * @apiError InternalServerError internal server error
+ * 
+ * @apiVersion 1.0.0
+ */
 router.route('/')
     .post(createUser);
 
