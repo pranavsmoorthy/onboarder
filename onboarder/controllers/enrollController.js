@@ -81,6 +81,14 @@ const updateEnrollStatus = asyncHandler(async (request, response) => {
 
         const result = await Enrollment.findOne(query);
 
+        if (Utils.isEmptyOrNil(result)) {
+            response.status(404).json({
+                "code": 'enrollment-not-found',
+                "messages": ["Could not find enrollment with given user id and course id"]
+            });
+            return;
+        }
+
         const data = {
             userId: request.body.userId,
             courseId: request.body.courseId,
@@ -88,14 +96,11 @@ const updateEnrollStatus = asyncHandler(async (request, response) => {
             progress: request.body.progress
         };
 
-
         const updatedEnrollment = await Enrollment.findByIdAndUpdate(
             result._id,
             data,
             { new: true }
         );
-        console.log(updatedEnrollment);
-
 
         response.status(200).json(updatedEnrollment);
     } catch (err) {

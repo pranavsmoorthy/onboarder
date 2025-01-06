@@ -33,9 +33,29 @@ const {
  *                  description: Successful response
  *              401:
  *                  description: Unauthorized
+ *              404:
+ *                  description: Enrollment not found for given user id and course id
  *              500: 
  *                  description: Internal server error
 */
+/**
+ * @api {put} /api/protected/enroll Change enrollment progress
+ * @apiName Change enrollment progress
+ * @apiPermission protected
+ * @apiGroup Enrollment
+ * @apiDescription Changes the enrollments progress
+ *
+ * @apiBody {String} userId ID of user.
+ * @apiBody {String} courseId ID of course that user is taking.
+ * @apiBody {String} progress Updated progress pf enrollment
+ *
+ * @apiSuccess {Object} enrollment Updated enrollment object.
+ * @apiError Unauthorized unauthorized
+ * @apiError NotFound enrollment with given courseId and userId not found
+ * @apiError InternalServerError internal server error
+ * 
+ * @apiVersion 1.0.0
+ */
 router.route('/')
     .put(updateEnrollStatus)
 
