@@ -93,7 +93,7 @@ const createUser = asyncHandler(async (request, response) => {
     try {
         let role = request.body.role;
 
-        if(Utils.isEmptyOrNil(role)){
+        if (Utils.isEmptyOrNil(role)) {
             role = "User";
         }
 
@@ -104,7 +104,7 @@ const createUser = asyncHandler(async (request, response) => {
             "role": role
         });
 
-        let htmlString = "<h1>Welcome to Onboarder</h1><p>Welcome to Onboarder! We&apos;re thrilled to have you join our community. We hope you&apos;ll find our services to be a valuable resource. We&apos;re here to help you make the most of your experience.</p><p>To get started, please visit your <a href='http://localhost:5001/index.html'>Onboarder profile page</a>!</p><p><br></p>"
+        let htmlString = "<h1>Welcome to Onboarder</h1><p>Welcome to Onboarder! We&apos;re thrilled to have you join our community. We hope you&apos;ll find our services to be a valuable resource. We&apos;re here to help you make the most of your experience.</p><p>To get started, please visit your <a href='http://onboarder.com:5001/index.html'>Onboarder profile page</a>!</p><p><br></p>"
         Utils.sendEmail(request.body.email, "Welcome to Onboarder!", htmlString);
 
         response.status(201).json(user);
@@ -154,7 +154,7 @@ const updateUserById = async (request, response, userId) => {
 
         let role = request.body.role;
 
-        if(Utils.isEmptyOrNil(role)){
+        if (Utils.isEmptyOrNil(role)) {
             role = user.role;
         }
 
@@ -171,7 +171,7 @@ const updateUserById = async (request, response, userId) => {
             { new: true }
         );
 
-        let htmlString = "<h1>Profile Information Updated</h1><p>Your profile information has been updated.<p>For more information, please visit your <a href='http://localhost:5001/index.html'>Onboarder profile page</a>!</p><p><br></p>"
+        let htmlString = "<h1>Profile Information Updated</h1><p>Your profile information has been updated.<p>For more information, please visit your <a href='http://onboarder.com:5001/index.html'>Onboarder profile page</a>!</p><p><br></p>"
         Utils.sendEmail(user.email, "Profile Information Updated", htmlString);
 
         response.status(200).json(updatedUser);
@@ -251,7 +251,7 @@ const validateUserFieldsInRequestBody = async (request) => {
     return errors;
 };
 
-async function isEmailValid(email){
+async function isEmailValid(email) {
     return (await emailValidator.validate(email)).valid;
 }
 

@@ -11,7 +11,7 @@ async function register() {
     };
 
     try {
-        const json = await getAPIResponse("http://localhost:5001/api/public/users/", 'post', data);
+        const json = await getAPIResponse("/api/public/users/", 'post', data);
 
         if (json?.ok) {
             document.getElementById('result').innerHTML = '<blockquote>User succesfully created</blockquote>';

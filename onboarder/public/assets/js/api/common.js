@@ -1,12 +1,6 @@
 async function logout() {
     try {
-        const response = await fetch("http://localhost:5001/api/public/auth/", {
-            method: 'get',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-        });
+        const response = await getAPIResponse("/api/public/auth/", 'get', null);
 
         const json = await response.json();
         if (response?.ok) {
@@ -80,7 +74,7 @@ async function getAPIResponse(url, method, data) {
     };
     if (data != null)
         payload.body = JSON.stringify(data);
-    const response = await fetch(url, payload);
+    const response = await fetch('http://onboarder.com:5001' + url, payload);
     const json = await response.json();
     if (response?.ok) {
         json.ok = response.ok;

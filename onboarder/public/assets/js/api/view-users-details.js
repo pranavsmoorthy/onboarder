@@ -7,7 +7,7 @@ function formatDateString(dateString) {
 
 async function getUser() {
     try {
-        const json = await getAPIResponse("http://localhost:5001/api/protected/users", 'get', null);
+        const json = await getAPIResponse("/api/protected/users", 'get', null);
         if (json?.ok) {
             document.getElementById('navOptions').innerHTML = getHeader(json.user.role, "Profile");
 
@@ -56,7 +56,7 @@ async function updateUser() {
             "password": password,
             "email": email
         };
-        const json = await getAPIResponse("http://localhost:5001/api/protected/users", 'put', data);
+        const json = await getAPIResponse("/api/protected/users", 'put', data);
         if (json?.ok) {
             document.getElementById('result').innerHTML = '<blockquote>User succesfully updated</blockquote>';
         } else {
@@ -70,7 +70,7 @@ async function updateUser() {
 
 async function deleteUser() {
     try {
-        const json = await getAPIResponse("http://localhost:5001/api/protected/users", 'delete', null);
+        const json = await getAPIResponse("/api/protected/users", 'delete', null);
         if (json?.ok) {
             alert("User successfully deleted");
             window.location.replace("index.html");

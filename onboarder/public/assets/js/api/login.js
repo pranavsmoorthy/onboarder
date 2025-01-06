@@ -14,7 +14,7 @@ async function login() {
     };
 
     try {
-        const json = await getAPIResponse("http://localhost:5001/api/public/auth/", 'post', data);
+        const json = await getAPIResponse("/api/public/auth/", 'post', data);
         if (!json?.ok) {
             let htmlString = "<blockquote>" + json.message + "</blockquote>";
             document.getElementById('result').innerHTML = htmlString;

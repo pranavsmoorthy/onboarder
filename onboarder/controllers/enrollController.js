@@ -7,10 +7,10 @@ const { constants } = require("../constants");
 const { update } = require("lodash");
 
 const enrollUser = asyncHandler(async (request, response) => {
-    try{
+    try {
         const course = await Course.findById(request.body.courseId);
 
-        if(Utils.isEmptyOrNil(course)){
+        if (Utils.isEmptyOrNil(course)) {
             response.status(404).json({
                 "code": 'course-enroll-failed',
                 "messages": ["Unable to find course with given id"]
@@ -19,8 +19,8 @@ const enrollUser = asyncHandler(async (request, response) => {
         }
 
         const user = await User.findById(request.body.userId);
-                
-        if(Utils.isEmptyOrNil(user)){
+
+        if (Utils.isEmptyOrNil(user)) {
             response.status(404).json({
                 "code": 'course-enroll-failed',
                 "messages": ["Could not find user with given id: " + request.body.userId]
@@ -28,14 +28,14 @@ const enrollUser = asyncHandler(async (request, response) => {
             return;
         }
 
-        const query = { 
-            userId: request.body.userId, 
-            courseId: request.body.courseId 
+        const query = {
+            userId: request.body.userId,
+            courseId: request.body.courseId
         };
 
         const result = await Enrollment.findOne(query);
 
-        if(result){
+        if (result) {
             response.status(409).json({
                 "code": 'course-enroll-failed',
                 "messages": ["User with given id already enrolled in given course"]
@@ -45,7 +45,7 @@ const enrollUser = asyncHandler(async (request, response) => {
 
         let progress = request.body.progress;
 
-        if(Utils.isEmptyOrNil(progress)){
+        if (Utils.isEmptyOrNil(progress)) {
             progress = "Not Started";
         }
 
@@ -56,14 +56,14 @@ const enrollUser = asyncHandler(async (request, response) => {
             progress: progress
         });
 
-        let htmlString = "<h1>Congratulations!</h1><p>You have been enrolled in the following course: " + course.title 
-        + "</p><p>This course is due at " + request.body.completionDate 
-        + "</p><p>For more information, please visit your <a href='http://localhost:5001/index.html'>Onboarder courses page</a>!</p><p><br></p>";
+        let htmlString = "<h1>Congratulations!</h1><p>You have been enrolled in the following course: " + course.title
+            + "</p><p>This course is due at " + request.body.completionDate
+            + "</p><p>For more information, please visit your <a href='http://onboarder.com:5001/index.html'>Onboarder courses page</a>!</p><p><br></p>";
 
         Utils.sendEmail(user.email, "You have been enrolled in a course", htmlString);
 
         response.status(200).json(enrollment);
-    }catch(err){
+    } catch (err) {
         console.log(err);
         response.status(500).json({
             "code": 'course-enrolled-failed',
@@ -73,10 +73,10 @@ const enrollUser = asyncHandler(async (request, response) => {
 })
 
 const updateEnrollStatus = asyncHandler(async (request, response) => {
-    try{
-        const query = { 
-            userId: request.body.userId, 
-            courseId: request.body.courseId 
+    try {
+        const query = {
+            userId: request.body.userId,
+            courseId: request.body.courseId
         };
 
         const result = await Enrollment.findOne(query);
@@ -98,7 +98,7 @@ const updateEnrollStatus = asyncHandler(async (request, response) => {
 
 
         response.status(200).json(updatedEnrollment);
-    }catch(err){
+    } catch (err) {
         console.log(err);
         response.status(500).json({
             "code": 'course-enrolled-failed',
@@ -109,10 +109,10 @@ const updateEnrollStatus = asyncHandler(async (request, response) => {
 
 
 const unenrollUser = asyncHandler(async (request, response) => {
-    try{
+    try {
         const course = await Course.findById(request.body.courseId);
 
-        if(Utils.isEmptyOrNil(course)){
+        if (Utils.isEmptyOrNil(course)) {
             response.status(404).json({
                 "code": 'course-enroll-failed',
                 "messages": ["Unable to find course with given id"]
@@ -121,8 +121,8 @@ const unenrollUser = asyncHandler(async (request, response) => {
         }
 
         const user = await User.findById(request.body.userId);
-                
-        if(Utils.isEmptyOrNil(user)){
+
+        if (Utils.isEmptyOrNil(user)) {
             response.status(404).json({
                 "code": 'course-enroll-failed',
                 "messages": ["Could not find user with given id: " + request.body.userId]
@@ -130,14 +130,14 @@ const unenrollUser = asyncHandler(async (request, response) => {
             return;
         }
 
-        const query = { 
-            userId: request.body.userId, 
-            courseId: request.body.courseId 
+        const query = {
+            userId: request.body.userId,
+            courseId: request.body.courseId
         };
 
         const result = await Enrollment.findOne(query);
 
-        if(!result){
+        if (!result) {
             response.status(409).json({
                 "code": 'course-unenroll-failed',
                 "messages": ["User with given id could not be found in given course"]
@@ -148,14 +148,14 @@ const unenrollUser = asyncHandler(async (request, response) => {
         await Enrollment.deleteOne(result);
 
         let htmlString = "<h1>Successfully Unenrolled</h1><p>You have been unenrolled from the following course: " + course.title
-         + "</p><p>For more information, please visit your <a href='http://localhost:5001/index.html'>Onboarder courses page</a>!</p><p><br></p>"
+            + "</p><p>For more information, please visit your <a href='http://onboarder.com:5001/index.html'>Onboarder courses page</a>!</p><p><br></p>"
 
         Utils.sendEmail(user.email, "You have been unenrolled from a course", htmlString);
 
         response.status(200).json({
             result
         });
-    }catch(err){
+    } catch (err) {
         console.log(err);
         response.status(500).json({
             "code": 'course-unenrolled-failed',

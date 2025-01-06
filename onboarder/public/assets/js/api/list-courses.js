@@ -17,7 +17,7 @@ function formatDateString(dateString) {
 
 async function listCourses() {
     try {
-        const json = await getAPIResponse("http://localhost:5001/api/admin/courses/", 'get', null);
+        const json = await getAPIResponse("/api/admin/courses/", 'get', null);
         if (json?.ok) {
             let htmlString = "<h2>Course List</h2>";
             htmlString += "<table id='courseTable'><tbody>"
@@ -72,7 +72,7 @@ async function listCourses() {
 
 async function getCourse(id) {
     try {
-        const json = await getAPIResponse("http://localhost:5001/api/admin/courses/" + id, 'get', null);
+        const json = await getAPIResponse("/api/admin/courses/" + id, 'get', null);
         if (json?.ok) {
             let htmlString = "";
 
@@ -124,7 +124,7 @@ async function updateCourse(id) {
             "link": link,
             "description": description
         };
-        const json = await getAPIResponse("http://localhost:5001/api/admin/courses/" + id, 'put', data);
+        const json = await getAPIResponse("/api/admin/courses/" + id, 'put', data);
         if (json?.ok) {
             document.getElementById('result').innerHTML = '<blockquote>Course succesfully updated</blockquote>';
             document.getElementById('courseInfoDiv').innerHTML = "";
@@ -149,11 +149,11 @@ async function updateCourse(id) {
 
 async function deleteCourse(id) {
     try {
-        const json = await getAPIResponse("http://localhost:5001/api/admin/courses/" + id, 'delete', null);
+        const json = await getAPIResponse("/api/admin/courses/" + id, 'delete', null);
         if (json?.ok) {
             deleteRow(id);
 
-            if(document.getElementById(id + "_heading")){
+            if (document.getElementById(id + "_heading")) {
                 document.getElementById("courseInfoDiv").innerHTML = "";
             }
         } else {
@@ -169,6 +169,6 @@ async function deleteCourse(id) {
     }
 }
 
-function viewCourse(link){
+function viewCourse(link) {
     window.open(link, "_blank");
 }

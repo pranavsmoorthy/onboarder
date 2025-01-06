@@ -18,7 +18,7 @@ function formatDateString(dateString) {
 
 async function listUsers() {
     try {
-        const json = await getAPIResponse("http://localhost:5001/api/admin/users", 'get', null);
+        const json = await getAPIResponse("/api/admin/users", 'get', null);
         if (json?.ok) {
             let htmlString = "<table id='userTable'><tbody>"
 
@@ -64,7 +64,7 @@ async function listUsers() {
 
 async function getUser(id) {
     try {
-        const json = await getAPIResponse("http://localhost:5001/api/admin/users/" + id, 'get', null);
+        const json = await getAPIResponse("/api/admin/users/" + id, 'get', null);
         if (json?.ok) {
             let htmlString = "";
 
@@ -129,7 +129,7 @@ async function getUser(id) {
             htmlString += "<tr><td><label for='courses'>Course to enroll in:</label></td>";
             htmlString += "<td><select name='enrollmentSelection' id='enrollmentSelection'>";
 
-            const courseJson = await getAPIResponse("http://localhost:5001/api/admin/courses", 'get', null);
+            const courseJson = await getAPIResponse("/api/admin/courses", 'get', null);
             courseJson.courses.map((course) => {
                 htmlString += "<option id='" + course._id + "_dropdown_option'>" + course.title + "</option>";
             })
@@ -164,9 +164,9 @@ async function enrollUser(userId) {
             "progress": "Not Started"
         }
 
-        const responseJSON = await getAPIResponse("http://localhost:5001/api/admin/enroll/", 'post', data);
+        const responseJSON = await getAPIResponse("/api/admin/enroll/", 'post', data);
         if (responseJSON.ok) {
-            const json = await getAPIResponse("http://localhost:5001/api/admin/users/" + userId, 'get', null);
+            const json = await getAPIResponse("/api/admin/users/" + userId, 'get', null);
 
             const course = json.courses.find(element => element.course._id === formattedId);
 
@@ -206,7 +206,7 @@ async function unenrollUser(userId, courseId) {
             "courseId": courseId
         }
 
-        const json = await getAPIResponse("http://localhost:5001/api/admin/enroll/", 'delete', data);
+        const json = await getAPIResponse("/api/admin/enroll/", 'delete', data);
         if (json?.ok) {
             deleteRow(courseId);
             document.getElementById('result').innerHTML = '<blockquote>User successfully unenrolled</blockquote>';
@@ -234,7 +234,7 @@ async function updateUser(id) {
             "role": role
         };
 
-        const json = await getAPIResponse("http://localhost:5001/api/admin/users/" + id, 'put', data);
+        const json = await getAPIResponse("/api/admin/users/" + id, 'put', data);
         if (json?.ok) {
             clearUserInfo();
             document.getElementById('result').innerHTML = '<blockquote>User succesfully updated</blockquote>';
@@ -253,11 +253,11 @@ async function updateUser(id) {
 
 async function deleteUser(id) {
     try {
-        const json = await getAPIResponse("http://localhost:5001/api/admin/users/" + id, 'delete', null);
+        const json = await getAPIResponse("/api/admin/users/" + id, 'delete', null);
         if (json?.ok) {
             deleteRow(id);
 
-            if(document.getElementById(id + "_heading")){
+            if (document.getElementById(id + "_heading")) {
                 document.getElementById("userInfoDiv").innerHTML = "";
                 document.getElementById("userEnrollmentInfoDiv").innerHTML = "";
             }
