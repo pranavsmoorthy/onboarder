@@ -103,7 +103,7 @@ router.route('/')
  *                                  required: false
  *          responses:
  *              201: 
- *                  description: Successful response, new course created
+ *                  description: Successful response, course updated
  *              400:
  *                  description: Bad request
  *              401:
@@ -127,7 +127,7 @@ router.route('/')
  *              404:
  *                  description: Course with given ID could not be found
  *              500:
- *                  description: Unable to get delete course
+ *                  description: Unable to delete course
 */
 router.route('/:id')
     .get(getCourseById)

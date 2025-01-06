@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const connectDb = require("./config/dbConnection");
 const errorHandler = require("./middleware/errorHandler");
 const swaggerUi = require('swagger-ui-express');
-const swaggerSpec = require("./swagger");
+const swaggerSpecJson = require("./swagger-spec.json");
 const dotenv = require("dotenv").config();
 
 const verifyJWTProtected = (req, res, next) => {
@@ -58,8 +58,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecJson));
 const port = process.env.port || 5000;
 
 app.use(express.json());

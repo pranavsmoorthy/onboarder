@@ -35,6 +35,7 @@ const {
  *                              password:
  *                                  type: string
  *                                  required: true
+ *                                  minLength: 8
  *                              email:
  *                                  type: string
  *                                  required: true

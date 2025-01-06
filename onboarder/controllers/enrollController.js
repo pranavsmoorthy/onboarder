@@ -43,11 +43,17 @@ const enrollUser = asyncHandler(async (request, response) => {
             return;
         }
 
+        let progress = request.body.progress;
+
+        if(Utils.isEmptyOrNil(progress)){
+            progress = "Not Started";
+        }
+
         const enrollment = await Enrollment.create({
             userId: request.body.userId,
             courseId: request.body.courseId,
             completionDate: request.body.completionDate,
-            progress: request.body.progress
+            progress: progress
         });
 
         let htmlString = "<h1>Congratulations!</h1><p>You have been enrolled in the following course: " + course.title 

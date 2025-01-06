@@ -25,6 +25,9 @@ const {
  *                              progress:
  *                                  type: string
  *                                  required: true
+ *                                  enum:
+ *                                      - "In Progress"
+ *                                      - "Completed"
  *          responses:
  *              200: 
  *                  description: Successful response
