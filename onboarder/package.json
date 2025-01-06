@@ -10,7 +10,17 @@
   },
   "apidoc": {
     "title": "Onboarder.com",
-    "url": "http://onboarder.com:5001"
+    "url": "http://onboarder.com:5001",
+    "order": [
+      "Security",
+      "Users",
+      "Courses",
+      "Enrollment",
+      "Users (Admin)"
+    ],
+    "template": {
+      "showRequiredLabels": true
+    }
   },
   "author": "Pranav S Moorthy",
   "license": "ISC",
