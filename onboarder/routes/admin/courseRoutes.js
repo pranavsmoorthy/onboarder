@@ -74,6 +74,8 @@ const {
  * @apiGroup Courses
  * @apiDescription Get all courses
  *
+ * @apiHeader {String} token Authentication token.
+ * 
  * @apiSuccess {Array} courses Array of all course objects.
  * @apiError InternalServerError internal server error
  * 
@@ -163,6 +165,8 @@ router.route('/')
  * @apiGroup Courses
  * @apiDescription Gets course with given id
  *
+ * @apiHeader {String} token Authentication token.
+ * 
  * @apiParam {String} id ID of course.
  *
  * @apiSuccess {Object} course Course object in given id.
@@ -179,6 +183,8 @@ router.route('/')
  * @apiGroup Courses
  * @apiDescription Update course details for given id
  *
+ * @apiHeader {String} token Authentication token.
+ * 
  * @apiParam {String} id Course id.
  * @apiBody {String} title Updated (or existing) title
  * @apiBody {String} description Updated (or existing) course description
@@ -198,6 +204,8 @@ router.route('/')
  * @apiGroup Courses
  * @apiDescription Delete course with given id
  *
+ * @apiHeader {String} token Authentication token.
+ * 
  * @apiParam {String} id Course id.
  *
  * @apiSuccess {Object} course Deleted course object.

@@ -45,6 +45,7 @@ const {
  * @apiGroup Enrollment
  * @apiDescription Changes the enrollments progress
  *
+ * @apiHeader {String} token Authentication token.
  * @apiBody {String} userId ID of user.
  * @apiBody {String} courseId ID of course that user is taking.
  * @apiBody {String} progress Updated progress pf enrollment
