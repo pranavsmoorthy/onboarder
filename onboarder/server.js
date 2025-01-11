@@ -71,6 +71,7 @@ app.use("/api/admin/enroll", require("./routes/admin/enrollRoutesAdmin"));
 app.use("/api/protected/enroll", require("./routes/protected/enrollRoutesProtected"));
 app.use("/api/public/auth", require("./routes/public/authRoutes"));
 app.use("/api/public/users", require("./routes/public/userRoutesPublic"));
+app.use("/api/public/otp", require("./routes/public/otpRoutes"));
 app.use(errorHandler);
 
 app.listen(port, () => {

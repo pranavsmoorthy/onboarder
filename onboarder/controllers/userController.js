@@ -3,6 +3,7 @@ const User = require("../models/userModel");
 const Course = require("../models/courseModel");
 const Enrollment = require("../models/enrollmentModel");
 const Utils = require("../utils/utilities");
+const OTP = require("../models/otpModel")
 const emailValidator = require("deep-email-validator");
 const { constants } = require("../constants");
 const { request } = require("express");
@@ -81,20 +82,21 @@ const getUser = async (request, response, userId) => {
 //@access public
 const createUser = asyncHandler(async (request, response) => {
     console.log('user creation request -- start');
-    const validationMessage = await validateUserFieldsInRequestBody(request);
-    if (validationMessage.length != 0) {
-        response.status(400).json({
-            "code": 'user-create-failed',
-            "messages": validationMessage
-        });
-        return;
-    }
-
     try {
         let role = request.body.role;
 
         if (Utils.isEmptyOrNil(role)) {
             role = "User";
+        }
+
+        let email = request.body.email;
+
+        const otpInstance = await OTP.find({ email }).sort({ createdAt: -1 }).limit(1);
+        if (otpInstance.length === 0 || request.body.otp !== otpInstance[0].otp) {
+            return response.status(400).json({
+                code: "user-create-failed",
+                message: 'The OTP is not valid',
+            });
         }
 
         const user = await User.create({
@@ -226,34 +228,6 @@ const deleteUserById = asyncHandler(async (request, response, userId) => {
         });
     }
 })
-
-const validateUserFieldsInRequestBody = async (request) => {
-    let errors = [];
-
-    const { username, email, password } = request.body;
-
-    if (Utils.isEmptyOrNil(username)) {
-        errors.push("Username cannot be empty.");
-    }
-
-    if (Utils.isEmptyOrNil(email)) {
-        errors.push("Email cannot be empty.");
-    } else if (!(await isEmailValid(email))) {
-        errors.push("Invalid email");
-    }
-
-    if (Utils.isEmptyOrNil(password)) {
-        errors.push("Password cannot be empty.");
-    } else if (password.length < 8) {
-        errors.push("Password must be at least 8 characters long.");
-    }
-
-    return errors;
-};
-
-async function isEmailValid(email) {
-    return (await emailValidator.validate(email)).valid;
-}
 
 module.exports = {
     getUserForAdminRoute,
