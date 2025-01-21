@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const https = require('https')
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const connectDb = require("./config/dbConnection");
@@ -7,6 +8,9 @@ const errorHandler = require("./middleware/errorHandler");
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpecJson = require("./swagger-spec.json");
 const dotenv = require("dotenv").config();
+const helmet = require("helmet");
+const fs = require("fs");
+const path = require("path");
 
 const verifyJWTProtected = (req, res, next) => {
     return verifyJWTToken(req, res, next, false);
@@ -53,6 +57,13 @@ app.use(cookieParser());
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
 
+app.use(
+    helmet({
+        crossOriginOpenerPolicy: false,
+        crossOriginResourcePolicy: false
+    })
+);
+
 // Define a route for the home page
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -74,6 +85,9 @@ app.use("/api/public/users", require("./routes/public/userRoutesPublic"));
 app.use("/api/public/otp", require("./routes/public/otpRoutes"));
 app.use(errorHandler);
 
-app.listen(port, () => {
+https.createServer({
+    key: fs.readFileSync(path.join(__dirname, "cert", 'server.key')),
+    cert: fs.readFileSync(path.join(__dirname, "cert", 'server.crt'))
+}, app).listen(port, () => {
     console.log(`server running: port ${port}`);
 })
