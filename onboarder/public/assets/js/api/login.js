@@ -1,6 +1,6 @@
 async function checkIfLoggedIn() {
     if (document.cookie != "") {
-        window.location.replace("view-users-details.html");
+        window.location.replace("view-course-details.html");
     }
 }
 
@@ -19,7 +19,7 @@ async function login() {
             let htmlString = "<blockquote>" + json.message + "</blockquote>";
             document.getElementById('result').innerHTML = htmlString;
         } else {
-            window.location.replace("view-users-details.html");
+            window.location.replace("view-course-details.html");
         }
     } catch (error) {
         console.log(error);
