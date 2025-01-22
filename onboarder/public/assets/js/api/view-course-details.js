@@ -34,9 +34,9 @@ async function getCourses() {
                     htmlString += "<td><button id=" + courseSelected.course._id + "_markDoneButton class="
 
                     if (courseSelected.progress == "In Progress")
-                        htmlString += "'primary'"
+                        htmlString += "'complete'"
                     else
-                        htmlString += "'button primary disabled'"
+                        htmlString += "'complete disabled'"
 
                     htmlString += "onclick='markComplete(`" + json.user._id + "`,`" + courseSelected.course._id + "`)'>Mark as Complete</button></td>";
                     htmlString += "</tr>"
@@ -58,8 +58,8 @@ async function getCourses() {
 async function viewCourse(userId, courseId, link) {
     window.open(link, "_blank");
     const element = document.getElementById(courseId + "_markDoneButton");
-
-    if (element.element.getAttribute("class") != "primary") {
+    console.log(element);
+    if (element.getAttribute("class") != "complete") {
         const data = {
             "userId": userId,
             "courseId": courseId,
@@ -93,7 +93,7 @@ async function markComplete(userId, courseId) {
         if (json?.ok) {
             document.getElementById(courseId + '_progress').innerHTML = "<p>" + json.progress + "</p>";
             const element = document.getElementById(courseId + "_markDoneButton");
-            element.setAttribute("class", "primary disabled");
+            element.setAttribute("class", "complete disabled");
         } else {
             document.getElementById('result').innerHTML = getErrorResponse(json);
         }
