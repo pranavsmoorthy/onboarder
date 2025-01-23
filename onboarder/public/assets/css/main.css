@@ -34,8 +34,20 @@ body {
 	line-height: 1;
 }
 
+p {
+	color: #ffffff;
+}
+
+p.intro {
+	line-height: 1.5;
+}
+
 ol, ul {
 	list-style: none;
+}
+
+ul.intro {
+	line-height: 1.5;
 }
 
 blockquote, q {
@@ -1835,7 +1847,7 @@ input, select, textarea {
 		border: solid 1px !important;
 		border-color: rgba(255, 255, 255, 0.15) !important;
 		border-radius: 3em;
-		color: #ffffff !important;
+		color: #ffffff;
 		cursor: pointer;
 		display: inline-block;
 		font-size: 0.6em;
@@ -1915,11 +1927,11 @@ input, select, textarea {
 		button.primary,
 		.button.primary {
 			background-color: #e3fcf7;
-			color: #001E2B !important;
+			color: #001E2B;
 		}
 		button.complete {
 			background-color: #00ED64;
-			color: #001E2B !important;
+			color: #001E2B;
 		}
 
 			input[type="submit"].primary:after,
@@ -3169,7 +3181,7 @@ input, select, textarea {
 		}	
 
 			table tbody tr:nth-child(2n + 1) {
-				background-color: rgba(255, 255, 255, 0.05);
+	 			background-color: rgba(255, 255, 255, 0.05);
 			}
 
 		table td {
@@ -3264,15 +3276,15 @@ input, select, textarea {
 		}
 
 		.wrapper.style1-alt {
-			background-color: #493382;
+			background-color: #112733;
 		}
 
 		.wrapper.style2 {
-			background-color: #5052b5;
+			background-color: #001E2B;
 		}
 
 		.wrapper.style2-alt {
-			background-color: #3e4094;
+			background-color: #023430;
 		}
 
 		.wrapper.style3 {
