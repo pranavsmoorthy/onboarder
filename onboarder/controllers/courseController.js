@@ -51,7 +51,6 @@ const getCourseById = asyncHandler(async (request, response) => {
 });
 
 const createCourse = asyncHandler(async (request, response) => {
-    
     try {
         const validationMessage = validateCourseFieldsInRequestBody(request);
         if(validationMessage.length != 0) {
@@ -97,13 +96,13 @@ const updateCourseById = asyncHandler(async (request, response) => {
             return;
         }
         
-        const updatedUser = await Course.findByIdAndUpdate(
+        const updatedCourse = await Course.findByIdAndUpdate(
             request.params.id,
             request.body,
             { new: true }
         );
 
-        response.status(200).json(updatedUser);
+        response.status(200).json(updatedCourse);
     }catch(err){
         response.status(500).json({
             "code": 'user-update-failed',
@@ -139,6 +138,56 @@ const deleteCourseById = asyncHandler(async (request, response) => {
     }
 })
 
+const addExam = asyncHandler(async (request, response) => {
+    try{
+        const course = await Course.findById(request.params.id);
+        
+        if(Utils.isEmptyOrNil(course)){
+            response.status(404).json({
+                "code": 'course-delete-failed',
+                "messages": ["Unable to find course with given id"]
+            });
+            return;
+        }
+
+        let data = {
+            "title": course.title, 
+            "description": course.description,
+            "link": course.link,
+            "exam": {
+                "title": request.body.title,
+                "questions": [],
+                "passMark": request.body.passmark
+            }
+        }
+
+        for(let x = 0; x < request.body.questions.length; x++){
+            const question = request.body.questions[x];
+
+            const questionData = {
+                "prompt": question.prompt,
+                "answers": question.answers,
+                "correctAnswerNumber": question.correctAnswerNumber
+            }
+
+            data.exam.questions.push(questionData);
+        }
+
+        const updatedCourse = await Course.findByIdAndUpdate(
+            request.params.id,
+            data,
+            { new: true }
+        );
+
+        response.status(200).json(updatedCourse.exam);
+    }catch(err){
+        response.status(404).json({
+            "code": 'course-addTest-failed',
+            "messages": ["Unable to add an exam"]
+        });
+    }
+})
+
 const validateCourseFieldsInRequestBody = (request) => {
     let errors = [];
 
@@ -165,5 +214,6 @@ module.exports = {
     listCourses,
     getCourseById,
     updateCourseById,
-    deleteCourseById
+    deleteCourseById,
+    addExam
 }
