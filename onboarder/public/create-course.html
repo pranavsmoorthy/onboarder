@@ -75,7 +75,64 @@
                 </tr>
               </tbody>
             </table>
-            <input class="primary" type="submit" value="Submit" />
+            <h2>Courses Exam</h2>
+            <table id="questionList">
+              <tbody>
+                <tr>
+                  <td><label>Prompt</label></td>
+                  <td><label>Choices</label></td>
+                  <td><label>Correct Answer</label></td>
+                </tr>
+              </tbody>
+            </table>
+            <h2>Add Questions</h2>
+            <form action=''>
+              <table>
+                <tbody>
+                  <tr>
+                    <td><label>Question Prompt<span style="color: red">*</span></label></td>
+                    <td><input type="text" placeholder="Prompt"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <table>
+                <tbody>
+                  <tr>
+                    <td><label>Choice A<span style="color: red">*</span></label></td>
+                    <td><input type="text" placeholder="Choice A"></td>
+                  </tr>
+                  <tr>
+                    <td><label>Choice B<span style="color: red">*</span></label></td>
+                    <td><input type="text" placeholder="Choice B"></td>
+                  </tr>
+                  <tr>
+                    <td><label>Choice C</label></td>
+                    <td><input type="text" placeholder="Choice C"></td>
+                  </tr>
+                  <tr>
+                    <td><label>Choice D</label></td>
+                    <td><input type="text" placeholder="Choice D"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <table>
+                <tbody>
+                  <tr>
+                    <td><label>Correct Answer<span style="color: red">*</span></label></td>
+                    <td>
+                      <select name='enrollmentSelection' id='enrollmentSelection'>
+                        <option>Choice A</option>
+                        <option>Choice B</option>
+                        <option>Choice C</option>
+                        <option>Choice D</option>
+                      </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <input type="submit" value="Add Question">
+            </form>
+            <input type="submit" value="Create Course" class="primary">
           </form>
         </div>
       </section>

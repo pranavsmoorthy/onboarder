@@ -101,7 +101,7 @@ async function getUser(id) {
 
             document.getElementById('userInfoDiv').innerHTML = htmlString;
 
-            htmlString = "<h2 id='" + id + "_heading'>Courses Enrolled</h2>"
+            htmlString =  "<h2 id='" + id + "_heading'>Courses Enrolled</h2>"
             htmlString += "<table id='enrollmentList'><tbody>";
             htmlString += "<tr>"
             htmlString += "<td><label>Course Name</label></td>"
