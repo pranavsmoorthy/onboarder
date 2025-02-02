@@ -8,7 +8,6 @@ const {
     getCourseById,
     updateCourseById,
     deleteCourseById,
-    addExam
 } = require("../../controllers/courseController");
 
 /** 
@@ -220,8 +219,5 @@ router.route('/:id')
     .get(getCourseById)
     .put(updateCourseById)
     .delete(deleteCourseById);
-
-router.route('/exam/:id')
-    .put(addExam)
 
 module.exports = router;

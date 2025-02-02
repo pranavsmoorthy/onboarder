@@ -8,17 +8,13 @@ const questionSchema = mongoose.Schema({
         type: Array,
         required: [true, "Please add the answers"]
     },
-    correstAnswerNumber: {
+    correctAnswerNumber: {
         type: Number,
         required: [true, "Please add the correct answer"]
     }
 });
 
 const examSchema = mongoose.Schema({
-    title: {
-        type: String,
-        required: [true, "Please add the test title"]
-    },
     questions: {
         type: [[questionSchema]],
         required: [true, "Please add the test questions"]
