@@ -65,6 +65,7 @@ async function listUsers() {
 async function getUser(id) {
     try {
         const json = await getAPIResponse("/api/admin/users/" + id, 'get', null);
+        console.log(json);
         if (json?.ok) {
             let htmlString = "";
 
@@ -111,6 +112,7 @@ async function getUser(id) {
             htmlString += "</tr>"
 
             json.courses.map((courseSelected) => {
+                console.log(courseSelected);
                 let info = { "key": "course_title", "value": courseSelected.course.title };
 
                 htmlString += "<tr id='" + courseSelected.course._id + "'><td>";

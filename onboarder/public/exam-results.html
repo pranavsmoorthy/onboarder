@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <title>Onboarder Exam</title>
+  </head>
+  <body>
+    <script src="assets/js/api/common.js"></script>
+    <script src="assets/js/api/exam-results.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        displayScore(); 
+      });
+    </script>
+    <header id="header">
+      <a class="title">Onboarder.com</a>
+    </header>
+    <div id="wrapper">
+      <section id="main" class="wrapper">
+        <div class="inner">
+          <h1 class="major">Course Exam</h1>
+          <div id='result'></div>
+          <div id='examResultDiv' style="display: flex; justify-content: center;"></div>
+          <div id="examStatus" style="display: flex; justify-content: center;"></div>
+          <br />
+          <br />
+          <br />
+          <div id='examResultQuestionDiv' style="display: flex; justify-content: center;"></div>
+          <div id='scoreComparisonDiv' style="display: flex; justify-content: center;"></div>
+          <div style="display: flex; justify-content: center;">
+            <button class="primary" onclick="javascript:redirect()">Proceed to Course Page</button>
+          </div>
+      </section>
+    </div>
+  </body>
+</html>

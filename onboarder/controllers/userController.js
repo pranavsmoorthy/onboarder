@@ -52,11 +52,20 @@ const getUser = async (request, response, userId) => {
         let coursesEnrolled = [];
         await Promise.all(enrolledInstances.map(async (enrollment) => {
             const course = await Course.findById(enrollment.courseId);
+            console.log(course);
+
             const progress = enrollment.progress;
             const completionDate = enrollment.completionDate;
 
+            const courseData = {
+                "_id": course._id,
+                "title": course.title,
+                "link": course.link,
+                "hasExam": (course.exam && course.exam.length != 0)
+            }
+
             const enrollmentObject = {
-                "course": course,
+                "course": courseData,
                 "progress": progress,
                 "completionDate": completionDate
             }

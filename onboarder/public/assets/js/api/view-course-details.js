@@ -22,6 +22,7 @@ async function getCourses() {
                 htmlString += "<td><label> </label></td>";
                 htmlString += "</tr>"
                 json.courses.map((courseSelected) => {
+                    console.log(courseSelected);
                     let info = { "key": "course_title", "value": courseSelected.course.title };
 
                     htmlString += "<tr id='" + courseSelected.course._id + "'><td>";
@@ -38,7 +39,24 @@ async function getCourses() {
                     else
                         htmlString += "'complete disabled'"
 
-                    htmlString += "onclick='markComplete(`" + json.user._id + "`,`" + courseSelected.course._id + "`)'>Mark as Complete</button></td>";
+                    htmlString += "onclick="
+                    
+                    console.log(courseSelected);
+
+                    if(courseSelected.course.hasExam){
+                        htmlString += "loadExam('" + json.user._id + "','" + courseSelected.course._id + "')";
+                    }else{
+                        htmlString += "markComplete(`" + json.user._id + "`,`" + courseSelected.course._id + "`)"
+                    }
+
+                    htmlString += '>';
+
+                    if(courseSelected.course.hasExam)
+                        htmlString += "Take Test";
+                    else
+                        htmlString += "Mark as Complete";
+
+                    htmlString += "</button></td>";
                     htmlString += "</tr>"
                 });
             } else {
@@ -70,7 +88,7 @@ async function viewCourse(userId, courseId, link) {
         try {
             if (json?.ok) {
                 document.getElementById(courseId + '_progress').innerHTML = "<p>" + json.progress + "</p>";
-                element.setAttribute("class", "primary");
+                element.setAttribute("class", "primary complete");
             } else {
                 document.getElementById('result').innerHTML = getErrorResponse(json);
             }
@@ -100,5 +118,16 @@ async function markComplete(userId, courseId) {
     } catch (err) {
         console.log(err);
         document.getElementById('result').innerHTML = '<blockquote>Problem marking course as complete. Please try again later!</blockquote>';
+    }
+}
+
+function loadExam(userId, courseId) {
+    try {
+        localStorage.setItem("userId", userId);
+        localStorage.setItem("courseId", courseId);
+        window.location.replace("exam.html");
+    } catch (err) {
+        console.log(err);
+        document.getElementById('result').innerHTML = '<blockquote>Failed to load test. Please try again later!</blockquote>';
     }
 }

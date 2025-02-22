@@ -15,7 +15,7 @@ const enrollmentSchema = mongoose.Schema({
     progress: {
         type: String,
         required: [true, "Please add the completion date"],
-        enum: ['Not Started', 'In Progress', 'Completed']
+        enum: ['Not Started', 'In Progress', 'Completed', 'Exam Passed', 'Exam Failed']
     }
 }, {
     timestamps: true

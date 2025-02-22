@@ -19,8 +19,7 @@ async function listCourses() {
     try {
         const json = await getAPIResponse("/api/admin/courses/", 'get', null);
         if (json?.ok) {
-            let htmlString = "<h2>Course List</h2>";
-            htmlString += "<table id='courseTable'><tbody>"
+            let htmlString = "<table id='courseTable'><tbody>"
 
             htmlString += "<tr>";
             htmlString += "<td><label>Title</label></td>";
@@ -76,20 +75,20 @@ async function getCourse(id) {
         if (json?.ok) {
             let htmlString = "";
 
-            htmlString += "<h2 id='" + id + "_heading'>Course Info For: " + json.course.title + "</h2>";
+            htmlString += "<h1 id='" + id + "_heading' class='major'>Course Info For: " + json.course.title + "</h1>";
             htmlString += "<form action='javascript:updateCourse(`" + json.course._id + "`)'>";
             htmlString += "<table>";
             htmlString += "   <tbody>";
             htmlString += "        <tr>";
-            htmlString += "            <td><label for='title'>Title<span style='color: red;'>*</span>: </label></td>";
+            htmlString += "            <td><label>Title<span style='color: red;'>*</span>: </label></td>";
             htmlString += "            <td><input type='text' id='title' name='title' placeholder='Enter course title' value='" + json.course.title + "'><br></td>";
             htmlString += "        </tr>";
             htmlString += "        <tr>";
-            htmlString += "            <td><label for='link'>Link<span style='color: red;'>*</span>: </label></td>";
+            htmlString += "            <td><label>Link<span style='color: red;'>*</span>: </label></td>";
             htmlString += "            <td><input type='text' id='link' name='link' placeholder='Enter course link' value='" + json.course.link + "'><br></td>";
             htmlString += "        </tr>";
             htmlString += "        <tr>";
-            htmlString += "            <td><label for='description'>Description: </label></td>";
+            htmlString += "            <td><label>Description: </label></td>";
             htmlString += "            <td><textarea id='description' name='description' style='resize: none' rows='4' cols='50' placeholder='Enter course description'>" + json.course.description + "</textarea><br></td>";
             htmlString += "        </tr>";
             htmlString += "    </tbody>";

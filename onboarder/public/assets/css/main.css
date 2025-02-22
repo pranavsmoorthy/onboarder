@@ -2450,20 +2450,20 @@ input, select, textarea {
 				content: '';
 				display: inline-block;
 				font-size: 0.8em;
-				height: 2.0625em;
+				height: 1.5625em;
 				left: 0;
-				line-height: 2.0625em;
+				line-height: 1.5625em;
 				position: absolute;
 				text-align: center;
 				top: 0;
-				width: 2.0625em;
+				width: 1.5625em;
 			}
 
 		input[type="checkbox"]:checked + label:before,
 		input[type="radio"]:checked + label:before {
-			background: #ffffff;
+			background: #07ac4c;
 			border-color: #ffffff;
-			color: #b74e91;
+			color: #ffffff;
 			content: '\f00c';
 		}
 

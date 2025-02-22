@@ -10,7 +10,7 @@ async function createCourse() {
         "link": link,
         "description": description,
         "exam": {
-            "questions": questions,
+            "questions": [questions],
             "passMark": 70
         }
     };
@@ -73,7 +73,7 @@ async function addQuestion() {
 
     questions.push({
         "prompt": prompt,
-        "answerChoices": answerChoices,
+        "answers": answerChoices,
         "correctAnswerNumber": correctAnswerNumber
     });
 
