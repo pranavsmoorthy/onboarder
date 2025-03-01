@@ -19,7 +19,7 @@ async function getExam() {
         totalQuestions = questions.length;
         
         questions.map((question, index) => {
-            htmlString += "<tr><td style='background-color: rgba(255, 255, 255, 0.05); border-left: 3px; border-right: 3px;'>";
+            htmlString += "<tr><td style='background-color: rgba(0, 0, 0, 0.05); border-left: 3px; border-right: 3px;'>";
             htmlString += "<label>" + (index + 1) + ". " + question.prompt + "</label><br><br>";
 
             question.answers.map((answer, answerNum) => {
@@ -52,13 +52,19 @@ function gradeExam() {
     questions.map((question, index) => {
         const radioButtons = document.getElementsByName(question.prompt);
 
+        let questionMarked = false;
+
         for(const button of radioButtons){
             if(button.checked){
                 if(button.className == question.correctAnswerNumber)
                     score++;
                 else
                     incorrectQuestionIndexes.push(index);
+
+                questionMarked = true;
             }
+
+            if(!questionMarked) incorrectQuestionIndexes.push(index);
         }
     })
 

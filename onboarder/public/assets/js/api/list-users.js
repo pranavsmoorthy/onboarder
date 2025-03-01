@@ -20,16 +20,16 @@ async function listUsers() {
     try {
         const json = await getAPIResponse("/api/admin/users", 'get', null);
         if (json?.ok) {
-            let htmlString = "<table id='userTable'><tbody>"
+            let htmlString = "<table id='userTable'><thead>"
 
             htmlString += "<tr>";
-            htmlString += "<td><label>Username</label></td>";
-            htmlString += "<td><label>Email</label></td>";
-            htmlString += "<td><label>Role</label></td>";
-            htmlString += "<td><label>Last Updated</label></td>";
-            htmlString += "<td><label> </label></td>";
-            htmlString += "<td><label> </label></td>";
-            htmlString += "</tr>";
+            htmlString += "<th><label>Username</label></th>";
+            htmlString += "<th><label>Email</label></th>";
+            htmlString += "<th><label>Role</label></th>";
+            htmlString += "<th><label>Last Updated</label></th>";
+            htmlString += "<th><label> </label></th>";
+            htmlString += "<th><label> </label></th>";
+            htmlString += "</tr></thead><tbody>";
 
             json.users.map((user) => {
                 let info = [];
@@ -103,13 +103,13 @@ async function getUser(id) {
             document.getElementById('userInfoDiv').innerHTML = htmlString;
 
             htmlString =  "<h2 id='" + id + "_heading'>Courses Enrolled</h2>"
-            htmlString += "<table id='enrollmentList'><tbody>";
+            htmlString += "<table id='enrollmentList'><thead>";
             htmlString += "<tr>"
-            htmlString += "<td><label>Course Name</label></td>"
-            htmlString += "<td><label>Due Date</label></td>"
-            htmlString += "<td><label>Progress</label></td>"
-            htmlString += "<td><label> </label></td>"
-            htmlString += "</tr>"
+            htmlString += "<th><label>Course Name</label></th>"
+            htmlString += "<th><label>Due Date</label></th>"
+            htmlString += "<th><label>Progress</label></th>"
+            htmlString += "<th><label> </label></th>"
+            htmlString += "</tr></thead><tbody>"
 
             json.courses.map((courseSelected) => {
                 console.log(courseSelected);

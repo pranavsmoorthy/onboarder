@@ -1,132 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <title>Onboarder Create Course</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <title>Onboarder Create Course</title>
-</head>
+  <body>
+    <script src="assets/js/api/common.js"></script>
+    <script src="assets/js/api/create-course.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
 
-<body>
-  <script src="assets/js/api/common.js"></script>
-  <script src="assets/js/api/create-course.js"></script>
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/jquery.scrollex.min.js"></script>
-  <script src="assets/js/jquery.scrolly.min.js"></script>
-  <script src="assets/js/browser.min.js"></script>
-  <script src="assets/js/breakpoints.min.js"></script>
-  <script src="assets/js/util.js"></script>
-  <script src="assets/js/main.js"></script>
+    <header id="header">
+      <a href="index.html" class="title">Onboarder.com</a>
+      <nav>
+        <ul>
+          <li><a href="create-course.html" class="active">Create Course</a></li>
+          <li><a href="list-users.html">User List</a></li>
+          <li><a href="list-courses.html">Course List</a></li>
+          <li><a href="view-course-details.html">My Courses</a></li>
+          <li><a href="view-users-details.html">Profile</a></li>
+          <li><a href="index.html" onclick="logout()">Log Out</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <header id="header">
-    <a href="view-users-details.html" class="title">Onboarder.com</a>
-    <nav>
-      <ul>
-        <li><a href='create-course.html' class='active'>Create Course</a></li>
-        <li><a href='list-users.html'>User List</a></li>
-        <li><a href='list-courses.html'>Course List</a></li>
-        <li><a href='view-course-details.html'>My Courses</a></li>
-        <li><a href='view-users-details.html'>Profile</a></li>
-        <li><a href='index.html' onclick='logout()'>Log Out</a></li>
-      </ul>
-    </nav>
-  </header>
+    <div id="wrapper">
+      <section id="main" class="wrapper">
+        <div class="inner">
+          <h1 class="major">Create Course</h1>
+          <div id="result"></div>
+          <form action="javascript:createCourse()">
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <label for="title"
+                      >Title<span style="color: red">*</span></label
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      id="title"
+                      name="title"
+                      value=""
+                      placeholder="Enter course title"
+                    /><br />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label for="link"
+                      >Link<span style="color: red">*</span></label
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      id="link"
+                      name="link"
+                      value=""
+                      placeholder="Enter course link"
+                    /><br />
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="description">Description</label></td>
+                  <td>
+                    <textarea
+                      style="resize: none"
+                      id="description"
+                      name="description"
+                      rows="4"
+                      cols="50"
+                      placeholder="Enter course description"
+                    ></textarea
+                    ><br />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <input type="submit" value="Create Course" class="primary" />
+          </form>
+          <form action="javascript:addQuestion()">
+            <h1>Course Exam</h1>
+            <table id="questionList">
+              <thead>
+                <tr>
+                  <th><label>Prompt</label></th>
+                  <th><label>Correct Answer</label></th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+            <h2>Add Questions</h2>
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <label>Question<span style="color: red">*</span></label>
+                  </td>
+                  <td>
+                    <input id="promptBox" type="text" placeholder="Prompt" />
+                  </td>
+                </tr>
 
-  <div id="wrapper">
-    <section id="main" class="wrapper">
-      <div class="inner">
-        <h1 class="major">Create Course</h1>
-        <div id="result"></div>
-        <form action="javascript:createCourse()">
-          <table>
-            <tbody>
-              <tr>
-                <td>
-                  <label for="title">Title<span style="color: red">*</span></label>
-                </td>
-                <td>
-                  <input type="text" id="title" name="title" value="" placeholder="Enter course title" /><br />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label for="link">Link<span style="color: red">*</span></label>
-                </td>
-                <td>
-                  <input type="text" id="link" name="link" value="" placeholder="Enter course link" /><br />
-                </td>
-              </tr>
-              <tr>
-                <td><label for="description">Description</label></td>
-                <td>
-                  <textarea style="resize: none" id="description" name="description" rows="4" cols="50"
-                    placeholder="Enter course description"></textarea><br />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <input type="submit" value="Create Course" class="primary">
-        </form>
-        <form action="javascript:addQuestion()">
-          <h1>Course Exam</h1>
-          <table id="questionList">
-            <tbody>
-              <tr>
-                <td><label>Prompt</label></td>
-                <td><label>Correct Answer</label></td>
-              </tr>
-            </tbody>
-          </table>
-          <h2>Add Questions</h2>
-          <table>
-            <tbody>
-              <tr>
-                <td><label>Question Prompt<span style="color: red">*</span></label></td>
-                <td><input id="promptBox" type="text" placeholder="Prompt"></td>
-              </tr>
-            </tbody>
-          </table>
-          <table>
-            <tbody>
-              <tr>
-                <td><label>Choice A<span style="color: red">*</span></label></td>
-                <td><input id="choiceABox" type="text" placeholder="Choice A"></td>
-              </tr>
-              <tr>
-                <td><label>Choice B<span style="color: red">*</span></label></td>
-                <td><input id="choiceBBox" type="text" placeholder="Choice B"></td>
-              </tr>
-              <tr>
-                <td><label>Choice C</label></td>
-                <td><input id="choiceCBox" type="text" placeholder="Choice C"></td>
-              </tr>
-              <tr>
-                <td><label>Choice D</label></td>
-                <td><input id="choiceDBox" type="text" placeholder="Choice D"></td>
-              </tr>
-            </tbody>
-          </table>
-          <table>
-            <tbody>
-              <tr>
-                <td><label>Correct Answer<span style="color: red">*</span></label></td>
-                <td>
-                  <select name='answerSelection' id='answerSelection'>
-                    <option id="0">Choice A</option>
-                    <option id="1">Choice B</option>
-                    <option id="2">Choice C</option>
-                    <option id="3">Choice D</option>
-                  </select>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <input type="submit" value="Add Question">
-        </form>
-      </div>
-    </section>
-  </div>
-</body>
-
+                <tr>
+                  <td>
+                    <label>Choice A<span style="color: red">*</span></label>
+                  </td>
+                  <td>
+                    <input id="choiceABox" type="text" placeholder="Choice A" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>Choice B<span style="color: red">*</span></label>
+                  </td>
+                  <td>
+                    <input id="choiceBBox" type="text" placeholder="Choice B" />
+                  </td>
+                </tr>
+                <tr>
+                  <td><label>Choice C</label></td>
+                  <td>
+                    <input id="choiceCBox" type="text" placeholder="Choice C" />
+                  </td>
+                </tr>
+                <tr>
+                  <td><label>Choice D</label></td>
+                  <td>
+                    <input id="choiceDBox" type="text" placeholder="Choice D" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label
+                      >Correct Answer<span style="color: red">*</span></label
+                    >
+                  </td>
+                  <td>
+                    <select name="answerSelection" id="answerSelection">
+                      <option id="0">Choice A</option>
+                      <option id="1">Choice B</option>
+                      <option id="2">Choice C</option>
+                      <option id="3">Choice D</option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <input type="submit" value="Add Question" />
+          </form>
+        </div>
+      </section>
+    </div>
+  </body>
 </html>

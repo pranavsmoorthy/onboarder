@@ -35,7 +35,7 @@ body {
 }
 
 p {
-	color: #ffffff;
+	color: #5B5B5B;
 }
 
 p.intro {
@@ -113,7 +113,7 @@ input, select, textarea {
 	}
 
 	body {
-		background: #001E2B;
+		background: #FFFFFF;
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -130,7 +130,7 @@ input, select, textarea {
 /* Type */
 
 	body, input, select, textarea {
-		color: rgba(255, 255, 255, 0.55);
+		color: #112733;
 		font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 		font-size: 16.5pt;
 		font-weight: normal;
@@ -177,7 +177,7 @@ input, select, textarea {
 		}
 
 	strong, b {
-		color: #ffffff;
+		color: #112733;
 		font-weight: bold;
 	}
 
@@ -186,7 +186,7 @@ input, select, textarea {
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		color: #ffffff;
+		color: #5B5B5B;
 		font-weight: bold;
 		line-height: 1.5;
 		margin: 0 0 0.5em 0;
@@ -288,7 +288,8 @@ input, select, textarea {
 
 	blockquote {
 		line-height: 1.5;
-		border-left: solid 4px rgba(255, 255, 255, 0.15);
+		border-left: solid 4px rgba(0, 0, 0, 0.45);
+		color: rgba(0, 0, 0, 0.4);
 		margin: 0 0 2em 0;
 		padding: 0.5em 0 0.5em 2em;
 	}
@@ -1843,7 +1844,7 @@ input, select, textarea {
 		-webkit-transition: border-color 0.2s ease;
 		-ms-transition: border-color 0.2s ease;
 		transition: border-color 0.2s ease;
-		background-color: transparent;
+		background: #544d55;
 		border: solid 1px !important;
 		border-color: rgba(255, 255, 255, 0.15) !important;
 		border-radius: 3em;
@@ -1878,7 +1879,7 @@ input, select, textarea {
 			-webkit-transition: opacity 0.2s ease, -webkit-transform 0.2s ease;
 			-ms-transition: opacity 0.2s ease, -ms-transform 0.2s ease;
 			transition: opacity 0.2s ease, transform 0.2s ease;
-			background: #ffffff;
+			background: #544d55;
 			border-radius: 3em;
 			content: '';
 			height: 100%;
@@ -1926,9 +1927,10 @@ input, select, textarea {
 		input[type="button"].primary,
 		button.primary,
 		.button.primary {
-			background-color: #e3fcf7;
+			background-color: #00ED64;
 			color: #001E2B;
 		}
+
 		button.complete {
 			background-color: #00ED64;
 			color: #001E2B;
@@ -1961,7 +1963,16 @@ input, select, textarea {
 		input[type="button"]:hover,
 		button:hover,
 		.button:hover {
+			background: #6e6570;
 			border-color: rgba(255, 255, 255, 0.55) !important;
+		}
+		button.complete:hover {
+			background: #7afdb1;
+			border-color: #ffffff !important;
+		}
+		button.primary:hover {
+			background: #7afdb1;
+			border-color: #ffffff !important;
 		}
 
 			input[type="submit"]:hover:after,
@@ -1980,8 +1991,13 @@ input, select, textarea {
 			input[type="reset"]:hover:active,
 			input[type="button"]:hover:active,
 			button:hover:active,
-			.button:hover:active {
+			button.primary:hover {
+				background: #7afdb1;
 				border-color: #ffffff !important;
+			}
+			.button:hover:active {
+				background: #474148;
+				border-color: #112733 !important;
 			}
 
 				input[type="submit"]:hover:active:after,
@@ -2311,7 +2327,7 @@ input, select, textarea {
 		}
 
 	label {
-		color: #ffffff;
+		color: #5B5B5B;
 		font-weight: bold;
 		/*line-height: 1.5;
 		margin: 0 0 0.7em 0;
@@ -2331,7 +2347,7 @@ input, select, textarea {
 		-webkit-appearance: none;
 		-ms-appearance: none;
 		appearance: none;
-		background: rgba(255, 255, 255, 0.05);
+		background: rgba(0, 0, 0, 0.05);
 		border-radius: 0.25em;
 		border: none;
 		color: inherit;
@@ -2358,8 +2374,8 @@ input, select, textarea {
 		input[type="tel"]:focus,
 		select:focus,
 		textarea:focus {
-			border-color: #ffffff;
-			box-shadow: 0 0 0 1px #ffffff;
+			border-color: #112733;
+			box-shadow: 0 0 0 1px #112733;
 		}
 
 	select {
@@ -2418,7 +2434,7 @@ input, select, textarea {
 		input[type="checkbox"] + label,
 		input[type="radio"] + label {
 			text-decoration: none;
-			color: rgba(255, 255, 255, 0.55);
+			color: rgba(0, 0, 0, 0.55);
 			cursor: pointer;
 			display: inline-block;
 			font-size: 1em;
@@ -2444,9 +2460,9 @@ input, select, textarea {
 
 			input[type="checkbox"] + label:before,
 			input[type="radio"] + label:before {
-				background: rgba(255, 255, 255, 0.05);
+				background: rgba(0, 0, 0, 0.05);
 				border-radius: 0.25em;
-				border: solid 1px rgba(255, 255, 255, 0.15);
+				border: solid 1px rgba(0, 0, 0, 0.15);
 				content: '';
 				display: inline-block;
 				font-size: 0.8em;
@@ -2461,16 +2477,16 @@ input, select, textarea {
 
 		input[type="checkbox"]:checked + label:before,
 		input[type="radio"]:checked + label:before {
-			background: #07ac4c;
-			border-color: #ffffff;
-			color: #ffffff;
+			background: #38a666;
+			border-color: #b5ffd4;
+			color: #FFFFFF;
 			content: '\f00c';
 		}
 
 		input[type="checkbox"]:focus + label:before,
 		input[type="radio"]:focus + label:before {
-			border-color: #ffffff;
-			box-shadow: 0 0 0 1px #ffffff;
+			border-color: #112733;
+			box-shadow: 0 0 0 1px #112733;
 		}
 
 	input[type="checkbox"] + label:before {
@@ -2486,7 +2502,7 @@ input, select, textarea {
 		border-radius: 4px;
 		margin-right: 2px;
 		opacity: 0.6;
-		filter: invert(0.8);
+		filter: invert(0);
 	  }
 	  
 	  input[type="date"]::-webkit-calendar-picker-indicator:hover {
@@ -2494,22 +2510,22 @@ input, select, textarea {
 	  }
 	  
 	::-webkit-input-placeholder {
-		color: rgba(255, 255, 255, 0.35) !important;
+		color: rgba(0, 0, 0, 0.35) !important;
 		opacity: 1.0;
 	}
 
 	:-moz-placeholder {
-		color: rgba(255, 255, 255, 0.35) !important;
+		color: rgba(0, 0, 0, 0.35) !important;
 		opacity: 1.0;
 	}
 
 	::-moz-placeholder {
-		color: rgba(255, 255, 255, 0.35) !important;
+		color: rgba(0, 0, 0, 0.35) !important;
 		opacity: 1.0;
 	}
 
 	:-ms-input-placeholder {
-		color: rgba(255, 255, 255, 0.35) !important;
+		color: rgba(0, 0, 0, 0.35) !important;
 		opacity: 1.0;
 	}
 
@@ -2554,7 +2570,7 @@ input, select, textarea {
 			width: 2.5em;
 			height: 2.5em;
 			display: block;
-			background: #ffffff;
+			background: #112733;
 			border-radius: 100%;
 			color: #312450;
 			text-align: center;
@@ -2938,7 +2954,7 @@ input, select, textarea {
 
 		.split > :nth-child(2n - 1) {
 			padding-right: 2.5em;
-			border-right: solid 1px rgba(255, 255, 255, 0.15);
+			border-right: solid 1px rgba(0, 0, 0, 0.822);
 		}
 
 		.split > :nth-child(2n) {
@@ -3179,7 +3195,7 @@ input, select, textarea {
 			border-left: 0;
 			border-right: 0;
 		}	
-
+		
 			table tbody tr:nth-child(2n + 1) {
 	 			background-color: rgba(255, 255, 255, 0.05);
 			}
@@ -3190,7 +3206,7 @@ input, select, textarea {
 		}
 
 		table th {
-			color: #ffffff;
+			color: #112733;
 			font-size: 1em;
 			font-weight: bold;
 			padding: 0 0.75em 0.75em 0.75em;
@@ -3198,8 +3214,21 @@ input, select, textarea {
 		}
 
 		table thead {
-			border-bottom: solid 2px rgba(255, 255, 255, 0.15);
+			border: solid 1px rgba(255, 255, 255, 0.15);
+			border-left: 0;
+			border-right: 0;
 		}
+
+			table thead tr th {
+				padding: 0.75em 0.75em;
+				background-color: #787777;
+				vertical-align: middle;
+			}
+
+			table thead tr th label {
+				color: white;
+				
+			}
 
 		table tfoot {
 			border-top: solid 2px rgba(255, 255, 255, 0.15);
@@ -3272,7 +3301,7 @@ input, select, textarea {
 		}
 
 		.wrapper.style1 {
-			background-color: #001E2B;
+			background-color: #ffffff;
 		}
 
 		.wrapper.style1-alt {
@@ -3280,7 +3309,7 @@ input, select, textarea {
 		}
 
 		.wrapper.style2 {
-			background-color: #001E2B;
+			background-color: #dcffdd;
 		}
 
 		.wrapper.style2-alt {

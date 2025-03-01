@@ -13,14 +13,14 @@ async function getCourses() {
 
             let htmlString = "";
             if (json.courses.length != 0) {
-                htmlString += "<table id='enrollmentList'><tbody>";
+                htmlString += "<table id='enrollmentList'><thead>";
                 htmlString += "<tr>"
-                htmlString += "<td><label>Course Title</label></td>";
-                htmlString += "<td><label>Due Date</label></td>";
-                htmlString += "<td><label>Progress</label></td>";
-                htmlString += "<td><label> </label></td>";
-                htmlString += "<td><label> </label></td>";
-                htmlString += "</tr>"
+                htmlString += "<th><label>Course Title</label></th>";
+                htmlString += "<th><label>Due Date</label></th>";
+                htmlString += "<th><label>Progress</label></th>";
+                htmlString += "<th><label> </label></th>";
+                htmlString += "<th><label> </label></th>";
+                htmlString += "</tr></thead><tbody>"
                 json.courses.map((courseSelected) => {
                     console.log(courseSelected);
                     let info = { "key": "course_title", "value": courseSelected.course.title };
@@ -41,8 +41,6 @@ async function getCourses() {
 
                     htmlString += "onclick="
                     
-                    console.log(courseSelected);
-
                     if(courseSelected.course.hasExam){
                         htmlString += "loadExam('" + json.user._id + "','" + courseSelected.course._id + "')";
                     }else{
@@ -77,7 +75,7 @@ async function viewCourse(userId, courseId, link) {
     window.open(link, "_blank");
     const element = document.getElementById(courseId + "_markDoneButton");
     console.log(element);
-    if (element.getAttribute("class") != "complete") {
+    if (element.getAttribute("class") != "complete" && element.getAttribute("class") != "complete disabled") {
         const data = {
             "userId": userId,
             "courseId": courseId,

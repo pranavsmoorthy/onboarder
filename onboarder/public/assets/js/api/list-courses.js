@@ -19,16 +19,16 @@ async function listCourses() {
     try {
         const json = await getAPIResponse("/api/admin/courses/", 'get', null);
         if (json?.ok) {
-            let htmlString = "<table id='courseTable'><tbody>"
+            let htmlString = "<table id='courseTable'><thead>"
 
             htmlString += "<tr>";
-            htmlString += "<td><label>Title</label></td>";
-            htmlString += "<td><label>Description</label></td>";
-            htmlString += "<td><label>Date Last Updated</label></td>";
-            htmlString += "<td><label></label></td>";
-            htmlString += "<td><label></label></td>";
-            htmlString += "<td><label></label></td>";
-            htmlString += "</tr>";
+            htmlString += "<th><label>Title</label></th>";
+            htmlString += "<th><label>Description</label></th>";
+            htmlString += "<th><label>Date Last Updated</label></th>";
+            htmlString += "<th><label></label></th>";
+            htmlString += "<th><label></label></th>";
+            htmlString += "<th><label></label></th>";
+            htmlString += "</tr></thead><tbody>";
 
 
             json.courses.map((course) => {
