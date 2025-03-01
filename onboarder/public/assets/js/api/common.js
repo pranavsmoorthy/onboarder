@@ -74,7 +74,7 @@ async function getAPIResponse(url, method, data) {
     };
     if (data != null)
         payload.body = JSON.stringify(data);
-    const response = await fetch('https://onboarder.com:5001' + url, payload);
+    const response = await fetch('https://ec2-3-91-161-219.compute-1.amazonaws.com:5000' + url, payload);
     const json = await response.json();
     if (response?.ok) {
         json.ok = response.ok;
